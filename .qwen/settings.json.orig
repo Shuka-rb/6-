@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(E:\\Bsuir\\2 kurs 2 sem\\ProgSP\\5 laba\\5\\src\\main\\java\\org/**)"
+    ]
+  }
+}
