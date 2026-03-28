@@ -8,10 +8,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.stream.Collectors;
 
-/**
- * Thread-safe product repository using ReentrantReadWriteLock for concurrent access.
- * Provides CRUD operations with proper synchronization for multi-client environment.
- */
+
 public class ProductRepository {
 
     private final Map<Long, Product> storage = new ConcurrentHashMap<>();
@@ -20,10 +17,7 @@ public class ProductRepository {
     private final ReentrantReadWriteLock.ReadLock readLock = lock.readLock();
     private final ReentrantReadWriteLock.WriteLock writeLock = lock.writeLock();
 
-    /**
-     * Creates a new product with auto-generated ID.
-     * Uses write lock for thread-safe insertion.
-     */
+
     public Product create(Product product) {
         writeLock.lock();
         try {
@@ -36,10 +30,7 @@ public class ProductRepository {
         }
     }
 
-    /**
-     * Reads a product by ID.
-     * Uses read lock for concurrent read access.
-     */
+
     public Optional<Product> read(Long id) {
         readLock.lock();
         try {
@@ -49,10 +40,7 @@ public class ProductRepository {
         }
     }
 
-    /**
-     * Reads all products sorted by ID.
-     * Uses read lock for concurrent read access.
-     */
+
     public List<Product> readAll() {
         readLock.lock();
         try {
@@ -64,10 +52,7 @@ public class ProductRepository {
         }
     }
 
-    /**
-     * Updates an existing product.
-     * Uses write lock for thread-safe modification.
-     */
+
     public Optional<Product> update(Long id, Product updatedProduct) {
         writeLock.lock();
         try {
@@ -82,10 +67,7 @@ public class ProductRepository {
         }
     }
 
-    /**
-     * Deletes a product by ID and renumbers remaining products.
-     * Uses write lock for thread-safe deletion.
-     */
+
     public boolean delete(Long id) {
         writeLock.lock();
         try {
@@ -102,10 +84,7 @@ public class ProductRepository {
         }
     }
 
-    /**
-     * Renumbers all products sequentially after deletion.
-     * Must be called while holding write lock.
-     */
+
     private void renumberProducts() {
         List<Product> products = storage.values().stream()
                 .sorted(Comparator.comparingLong(Product::getId))
@@ -122,9 +101,7 @@ public class ProductRepository {
         idGenerator.set(newId);
     }
 
-    /**
-     * Checks if repository is empty.
-     */
+
     public boolean isEmpty() {
         readLock.lock();
         try {
@@ -134,9 +111,6 @@ public class ProductRepository {
         }
     }
 
-    /**
-     * Returns the count of products in repository.
-     */
     public int count() {
         readLock.lock();
         try {
@@ -146,9 +120,7 @@ public class ProductRepository {
         }
     }
 
-    /**
-     * Clears all products from repository.
-     */
+
     public void clear() {
         writeLock.lock();
         try {

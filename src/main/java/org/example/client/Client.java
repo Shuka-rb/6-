@@ -11,10 +11,7 @@ import java.net.Socket;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * Client for connecting to the multi-threaded warehouse management server.
- * Provides console-based interface for CRUD operations on products.
- */
+
 public class Client {
 
     private static final String HOST = "localhost";
@@ -26,9 +23,7 @@ public class Client {
     private Scanner scanner;
     private volatile boolean connected = false;
 
-    /**
-     * Establishes connection to the server.
-     */
+
     public void connect() throws IOException {
         socket = new Socket(HOST, PORT);
         output = new ObjectOutputStream(socket.getOutputStream());
@@ -38,9 +33,7 @@ public class Client {
         System.out.println("Connected to server at " + HOST + ":" + PORT);
     }
 
-    /**
-     * Starts the console interface for user interaction.
-     */
+
     public void startConsole() {
         boolean running = true;
 
@@ -225,9 +218,6 @@ public class Client {
         return s.length() <= maxLen ? s : s.substring(0, maxLen - 3) + "...";
     }
 
-    /**
-     * Disconnects from the server and closes resources.
-     */
     public void disconnect() {
         connected = false;
 

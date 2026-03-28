@@ -11,10 +11,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.List;
 
-/**
- * Client handler runnable that processes client requests in a separate thread.
- * Each client connection is handled by an instance of this class submitted to the thread pool.
- */
+
 public class ClientHandler implements Runnable {
 
     private final Socket clientSocket;
@@ -66,9 +63,7 @@ public class ClientHandler implements Runnable {
         }
     }
 
-    /**
-     * Processes incoming requests and returns appropriate responses.
-     */
+
     private Response processRequest(Request request) {
         switch (request.getOperation()) {
             case CREATE:
@@ -136,9 +131,7 @@ public class ClientHandler implements Runnable {
         return new Response(Response.Status.ERROR, "Product not found");
     }
 
-    /**
-     * Closes all resources properly.
-     */
+
     private void closeResources(ObjectOutputStream output, ObjectInputStream input, Socket socket) {
         try {
             if (output != null) output.close();

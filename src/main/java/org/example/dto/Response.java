@@ -4,10 +4,7 @@ import org.example.model.Product;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Response DTO for client-server communication.
- * Encapsulates operation status, message, and optional data.
- */
+
 public class Response implements Serializable {
     private static final long serialVersionUID = 1L;
 

@@ -12,10 +12,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.atomic.AtomicInteger;
 
-/**
- * Multi-threaded server using ExecutorService thread pool for handling multiple clients concurrently.
- * Each client connection is processed in a separate thread from the pool.
- */
+
 public class Server {
 
     private static final int PORT = 8080;
@@ -27,10 +24,7 @@ public class Server {
     private final AtomicInteger clientIdCounter = new AtomicInteger(0);
     private volatile boolean running = true;
 
-    /**
-     * Starts the server and begins accepting client connections.
-     * Client requests are handled concurrently using a fixed-size thread pool.
-     */
+
     public void start() {
         try {
             serverSocket = new ServerSocket(PORT);
@@ -41,7 +35,7 @@ public class Server {
             System.out.println("╠═══════════════════════════════════════════════════════════════╣");
             System.out.println("║  Port: " + PORT);
             System.out.println("║  Thread Pool Size: " + THREAD_POOL_SIZE);
-            System.out.println("║  Repository: Thread-safe with ReentrantReadWriteLock         ║");
+            System.out.println("║  Repository: Thread-safe with ReentrantReadWriteLock          ║");
             System.out.println("╚═══════════════════════════════════════════════════════════════╝");
             System.out.println();
 
@@ -76,9 +70,6 @@ public class Server {
         }
     }
 
-    /**
-     * Initializes sample warehouse data for demonstration.
-     */
     private void initializeSampleData() {
         System.out.println("[Server] Initializing sample data...");
         repository.create(new Product("Laptop Dell XPS 15", "Electronics", 25, 1299.99));
@@ -90,9 +81,6 @@ public class Server {
         System.out.println();
     }
 
-    /**
-     * Returns the approximate number of active threads in the pool.
-     */
     private int getActiveThreadCount() {
         if (threadPool instanceof ThreadPoolExecutor) {
             return ((ThreadPoolExecutor) threadPool).getActiveCount();
@@ -100,9 +88,7 @@ public class Server {
         return 0;
     }
 
-    /**
-     * Stops the server and shuts down the thread pool.
-     */
+
     public void stop() {
         running = false;
 
@@ -123,16 +109,12 @@ public class Server {
         System.out.println("[Server] Server stopped");
     }
 
-    /**
-     * Checks if the server is currently running.
-     */
+
     public boolean isRunning() {
         return running;
     }
 
-    /**
-     * Returns the product repository for testing purposes.
-     */
+
     public ProductRepository getRepository() {
         return repository;
     }

@@ -14,10 +14,6 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.List;
 
-/**
- * Main entry point for the multi-threaded warehouse management system.
- * Provides menu for starting server, client, or demo mode with concurrent clients.
- */
 public class Main {
 
     public static void main(String[] args) {
@@ -127,10 +123,6 @@ public class Main {
         }
     }
 
-    /**
-     * Demonstrates multi-threaded server handling multiple concurrent clients.
-     * This showcases the concurrency features implemented in Lab 6.
-     */
     private static void startMultiClientDemo() {
         System.out.println("\n>>> Starting MULTI-CLIENT DEMO (Concurrency Test)...");
         System.out.println("This demo shows the server handling multiple clients concurrently.");
@@ -173,9 +165,6 @@ public class Main {
         }
     }
 
-    /**
-     * Runnable task for simulating client operations in demo.
-     */
     private static class ClientTask implements Runnable {
         private final int clientNum;
         private final int delay;
